@@ -38,6 +38,8 @@
         {{-- 用户发布的内容 --}}
         <div class="panel panel-default">
             <div class="panel-body">
+
+                
                 <ul class="nav nav-tabs">
                     <li class="{{ active_class(if_query('tab', null)) }}">
                         <a href="{{ route('users.show', $user->id) }}">Ta 的话题</a>
