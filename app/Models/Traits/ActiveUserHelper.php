@@ -8,6 +8,7 @@ use Carbon\Carbon;
 use Cache;
 use DB;
 
+
 trait ActiveUserHelper
 {
     // 用于存放临时用户数据
@@ -16,7 +17,7 @@ trait ActiveUserHelper
     // 配置信息
     protected $topic_weight = 4; // 话题权重
     protected $reply_weight = 1; // 回复权重
-    protected $pass_days = 7;    // 多少天内发表过内容
+    protected $pass_days = 360;    // 多少天内发表过内容
     protected $user_number = 6; // 取出来多少用户
 
     // 缓存相关配置
@@ -27,8 +28,8 @@ trait ActiveUserHelper
     {
         // 尝试从缓存中取出 cache_key 对应的数据。如果能取到，便直接返回数据。
         // 否则运行匿名函数中的代码来取出活跃用户数据，返回的同时做了缓存。
-        return Cache::remember($this->cache_key, $this->cache_expire_in_minutes, function(){
-            return $this->calculateActiveUsers();
+            return Cache::remember($this->cache_key, $this->cache_expire_in_minutes, function(){
+                return $this->calculateActiveUsers();
         });
     }
 
